@@ -1,16 +1,20 @@
 import { RabbitRPC, RabbitSubscribe } from '@golevelup/nestjs-rabbitmq';
-import { Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
+import { LogRequest } from 'src/app/models/log-request';
+import { LogRequestService } from '../log-request/log-request.service';
 
 @Injectable()
 export class MessasingService {
+
+    constructor (@Inject(LogRequestService) private logService: LogRequestService) {}
     
     @RabbitSubscribe({
         exchange: 'exchange_queue_1',
         routingKey: 'subscribe-route',
         queue: 'queue_1'
     })
-    public async pubSubService(msg: {}) {
-        console.log(`Received message: ${JSON.stringify(msg)}`);
+    public async pubSubService(logRequest: LogRequest) {
+        await this.logService.updateTime(logRequest);
     }
 
     @RabbitRPC({
@@ -18,10 +22,7 @@ export class MessasingService {
         routingKey: 'rpc-route',
         queue: 'queue_2'
     })
-    public async rpcService(msg: {}) {
-        return {
-            'msg': 'Received message',
-            'payload': msg
-        }
+    public async rpcService(logRequest: LogRequest) {
+        return await this.logService.updateTime(logRequest);
     }
 }

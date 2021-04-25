@@ -5,6 +5,7 @@ import { RabbitMQ } from './config/rabbitmq';
 import { MessasingService } from './app/services/messasing/messasing.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { MySql } from './config/mysql';
+import { LogRequestService } from './app/services/log-request/log-request.service';
 
 @Module({
   imports: [
@@ -15,6 +16,6 @@ import { MySql } from './config/mysql';
     SequelizeModule.forRootAsync(MySql)
   ],
   controllers: [],
-  providers: [MessasingService],
+  providers: [MessasingService, LogRequestService],
 })
 export class AppModule {}

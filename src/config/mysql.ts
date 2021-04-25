@@ -1,7 +1,7 @@
 import { ConfigModule, ConfigService } from "@nestjs/config"
 import { SequelizeModuleAsyncOptions } from "@nestjs/sequelize";
-import { LogRequest } from "src/app/models/logRequest";
-import { LogRequestModule } from "src/app/models/logRequest.module";
+import { LogRequest } from "src/app/models/log-request";
+import { LogRequestModule } from "src/app/models/log-request.module";
 
 export const MySql: SequelizeModuleAsyncOptions = {
     imports: [ConfigModule, LogRequestModule],
