@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { LogRequest } from 'src/app/models/log-request';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class LogRequestService {
      * @param logRequest 
      * @returns Promise<LogRequest>
      */
-    async updateTime(logRequest: LogRequest): Promise<LogRequest> {
-        return await logRequest.save();
+    async updateTime(logRequest: LogRequest) {
+        return await logRequest.save(); 
     }
 }

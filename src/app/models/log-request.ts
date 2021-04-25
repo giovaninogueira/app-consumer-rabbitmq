@@ -7,9 +7,9 @@ export class LogRequest extends Model<LogRequest> {
 
     @Column
     @CreatedAt
-    created_at: string;
+    created_at: Date;
 
     @Column
     @UpdatedAt
-    updated_at: string
+    updated_at: Date
 }

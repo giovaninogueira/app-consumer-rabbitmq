@@ -13,6 +13,7 @@ export const MySql: SequelizeModuleAsyncOptions = {
       password: configService.get('MYSQL_PASSWORD'),
       database: configService.get('MYSQL_DATABASE'),
       models: [LogRequest],
+      logging: false
     }),
     inject: [ConfigService],
   };
