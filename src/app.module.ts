@@ -1,10 +1,17 @@
+import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
+import { RabbitMQ } from './config/rabbitmq';
+import { MessasingService } from './app/services/messasing/messasing.service';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
+    RabbitMQModule.forRootAsync(RabbitMQModule, RabbitMQ),
+  ],
+  controllers: [],
+  providers: [MessasingService],
 })
 export class AppModule {}
