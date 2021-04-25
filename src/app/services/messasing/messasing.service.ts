@@ -19,7 +19,6 @@ export class MessasingService {
         queue: 'queue_2'
     })
     public async rpcService(msg: {}) {
-        Logger.log('AUI')
         return {
             'msg': 'Received message',
             'payload': msg
